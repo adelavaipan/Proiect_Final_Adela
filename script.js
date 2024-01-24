@@ -4,12 +4,15 @@ const name = document.getElementById('name');
 const email = document.getElementById('email');
 const phone = document.getElementById('phone');
 const message = document.getElementById('message');
+const modal = document.getElementById("myModal");
+const btn = document.getElementById("myBtn");
 
-form.addEventListener('submit', e => {
-    e.preventDefault();
+const span = document.getElementsByClassName("close")[0];
 
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
     validateInputs();
-});
+    });
 
 const setError = (element, message) => {
     const inputControl = element.parentElement;
@@ -40,7 +43,7 @@ const validateInputs = () => {
     const emailValue = email.value.trim();
     const phoneValue = phone.value.trim();
     const messageValue = message.value.trim();
-
+  
     if(firstnameValue === '') {
         setError(firstname, 'Prenumele este obligatoriu');
     } else {
@@ -66,14 +69,25 @@ const validateInputs = () => {
     } else {
       setSuccess(message);
     }
-    
+   
+  };
 
-};
+  btn.onclick = function() {
+    modal.style.display = "block";
+  
+  }
+  
+  span.onclick = function() {
+  modal.style.display = "none";
+  }
+  
+  window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+  }
 
-document.querySelector("button2").addEventListener("submit", function() {
-  alert("Mesaj trimis");
-});
 
 
 
-
+   
